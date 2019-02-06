@@ -6,8 +6,8 @@ commons = set()
 for line in sys.stdin:
     box_id = line[:-1]
     for pos in range(len(box_id)):
-        common = (pos, box_id[:pos] + box_id[pos + 1:])
+        common = (box_id[:pos], box_id[pos + 1:])
         if common in commons:
-            print(common[1])
+            print(*common, sep='')
             sys.exit()
         commons.add(common)
