@@ -7,7 +7,7 @@ import sys
 regex = re.compile(r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)')
 Claim = collections.namedtuple('Claim', 'id x y w h')
 claims = [Claim(*map(int, m.group(1, 2, 3, 4, 5)))
-          for m in filter(bool, map(regex.match, sys.stdin))]
+          for m in map(regex.match, sys.stdin)]
 
 # Partition the fabric into contiguous "cells" which are rectangles falling
 # either completely inside or completely outside each claim.  In the worst case

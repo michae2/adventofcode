@@ -5,7 +5,7 @@ import sys
 twos = 0
 threes = 0
 for line in sys.stdin:
-    box_id = line[:-1]
+    box_id = line.rstrip()
     counts = {}
     for letter in box_id:
         counts[letter] = counts.get(letter, 0) + 1
