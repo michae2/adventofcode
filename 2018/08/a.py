@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 import itertools
-import sys
 
-numbers = map(int, sys.stdin.read(None).split())
+numbers = map(int, input().split())
 
 def node_sum():
     c = next(numbers)
