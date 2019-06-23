@@ -23,7 +23,7 @@ class Cart:
         self.turn = itertools.cycle([left, straight, right])
         self.crashed = False
     def __str__(self):
-        return str(self.pos)
+        return str(self.pos % w) + ',' + str(self.pos // w)
 
 carts = []
 bypos = {}
@@ -57,6 +57,4 @@ while len(carts) > 1:
     carts = [cart for cart in carts if not cart.crashed]
 
 assert len(carts) == 1
-x = carts[0].pos % w
-y = carts[0].pos // w
-print(str(x) + ',' + str(y))
+print(carts[0])
