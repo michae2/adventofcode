@@ -1,13 +1,13 @@
 # Targets:
-# make, make all:                 build all solutions
-# make py, make cpp:              build all solutions for one language
-# make py/a, make cpp/b:          build solution for one part and one language
-# make run, make run/all:         run all solutions
-# make run/py, make run/cpp:      run all solutions for one language
-# make run/py/a, make run/cpp/b:  run solution for one part and one language
-# make clean:                     remove all temporary files
+# make, make all:                     build all solutions
+# make py, make cpp, etc:             build all solutions for one language
+# make py/a, make cpp/b, etc:         build solution for one part and one lang
+# make run, make run/all:             run all solutions
+# make run/py, make run/cpp, etc:     run all solutions for one lang
+# make run/py/a, make run/cpp/b, etc  run solution for one part and one lang
+# make clean:                         remove all temporary files
 
-langs = py cpp
+langs = py cpp go
 runlangs = $(addprefix run/,$(langs))
 runs = $(addsuffix /a,$(runlangs)) $(addsuffix /b,$(runlangs))
 
@@ -24,7 +24,11 @@ py/%: %.py
 
 cpp/%: %.cpp
 	mkdir -p cpp
-	$(CXX) $< -o $@ $(CXXFLAGS)
+	$(CXX) -o $@ $< $(CXXFLAGS)
+
+go/%: %.go
+	mkdir -p go
+	go build -o $@ $<
 
 .PHONY: run run/all $(runlangs) $(runs)
 run: run/all
