@@ -7,12 +7,17 @@
 # make run/py/a, make run/cpp/b, etc  run solution for one part and one lang
 # make clean:                         remove all temporary files
 
-langs = py cpp go
+langs = py cpp go scm
 runlangs = $(addprefix run/,$(langs))
 runs = $(addsuffix /a,$(runlangs)) $(addsuffix /b,$(runlangs))
 
 CXX = g++-10
 CXXFLAGS = -std=c++20 -Wall -Wextra -pedantic-errors -g
+
+GO = go build
+
+SCM = scheme
+SCMFLAGS = --optimize-level 3
 
 .PHONY: all $(langs)
 all: $(langs)
@@ -28,7 +33,12 @@ cpp/%: %.cpp
 
 go/%: %.go
 	mkdir -p go
-	go build -o $@ $<
+	$(GO) -o $@ $<
+
+scm/%: %.scm
+	mkdir -p scm
+	echo '(compile-program "$<")' | $(SCM) -q $(SCMFLAGS)
+	mv $*.so $@
 
 .PHONY: run run/all $(runlangs) $(runs)
 run: run/all
