@@ -7,7 +7,7 @@
 # make run/py/a, make run/cpp/b, etc  run solution for one part and one lang
 # make clean:                         remove all temporary files
 
-langs = py # cpp go scm
+langs = py cpp # go scm
 runlangs = $(addprefix run/,$(langs))
 runs = $(addsuffix /a,$(runlangs)) $(addsuffix /b,$(runlangs))
 
