@@ -6,6 +6,7 @@ using namespace std;
 int
 main(int, char *[])
 {
+    ios::sync_with_stdio(false);
     int e;
     unordered_set<int> es;
     while (cin >> e) {

@@ -7,6 +7,7 @@ using namespace std;
 int
 main(int, char *[])
 {
+    ios::sync_with_stdio(false);
     int e;
     vector<int> es;
     unordered_map<int, int> tab;
